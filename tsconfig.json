@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "module": "commonjs",
+        "skipLibCheck": true,
+        "outDir": "."
+    },
+    "files": [
+        "bot.ts",
+        "types.ts"]
+}
