@@ -1,4 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
+/* eslint-disable @typescript-eslint/naming-convention */
+/**
+ * @type {ILocale} - локализация бота
+ */
 export type ILocale = {
 	locale: string;
 	msg_nopermissions: string;
@@ -11,7 +14,13 @@ export type ILocale = {
 	msg_cooldown: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+/**
+ * @type {IConfig}  - конфигурация бота
+ * @prop {string} token - токен сообщества ВКонтакте
+ * @prop {boolean} FLG_ADDTAGS - флаг добавления теганья при выводе топ участников, true - тегается
+ * @prop {boolean} FLG_REVERSE - флаг режима кулдауна true - в кулдаун уходит инициатор (один ко многим)
+ * @prop {number} COOLDOWN - время (в мс)
+ */
 export type IConfig = {
 	token: string;
 	FLG_ADDTAGS: boolean;
@@ -19,7 +28,11 @@ export type IConfig = {
 	COOLDOWN: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+/**
+ * @type {IKarlik}  - запись участника
+ * @prop {number} points - кол-во очков
+ * @prop {number} timer - FLG_REVERSE ? время возможности отправки следующего сообщения : получения очков
+ */
 export type IKarlik = {
 	points: number;
 	timer: number;

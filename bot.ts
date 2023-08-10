@@ -66,6 +66,12 @@ function parseMessage(context: MessageContext) {
 	}
 }
 
+/**
+ * Обертка для получения данных о пользователях из вк
+ * @param {number | string} targetId - Ид или идентификатор пользователя (цель запроса)
+ * @param {number | str} [initiatorId=1] - Ид или идентификатор пользователя (инициатор запроса), необязательный параметр
+ * @returns {Promise<UsersGetResponse>} - Массив данных с данными о пользователях
+ */
 async function getUsr(targetId: number | string, initiatorId = 1): Promise<UsersGetResponse> {
 	try {
 		const users = await api.users.get({
@@ -79,6 +85,10 @@ async function getUsr(targetId: number | string, initiatorId = 1): Promise<Users
 	}
 }
 
+/**
+ * Обертка для получения списка пользователей в конференции
+ * @param {number} chatId - ID конференции
+ */
 async function getChatUsers(chatId: number): Promise<MessagesGetConversationMembers> {
 	try {
 		const users = await api.messages.getConversationMembers({
@@ -91,6 +101,10 @@ async function getChatUsers(chatId: number): Promise<MessagesGetConversationMemb
 	}
 }
 
+/**
+ * Получение топа в текущем чате
+ * @param {number} chatId - ID конференции
+ */
 async function getChatTop(chatId: number): Promise<string[]> { // Aполучить + вывести топ юзеров чата
 	return getChatUsers(chatId).then(userList => {
 		if (userList === null) {
@@ -107,6 +121,11 @@ async function getChatTop(chatId: number): Promise<string[]> { // Aполучи�
 	});
 }
 
+/**
+ * Обновления очков пользователя, с возвратом уведомления
+ * @param {UsersGetResponse} userData - Массив пользователей полученный из VK
+ * @returns {string} Готовая строка для отправки в чат
+ */
 function recordUser(userData: UsersGetResponse): string { // Обновить очки
 	const targetUser = userData[0].screen_name as string;
 	let initiatorUser = userData.length > 1 ? userData[1].screen_name as string : targetUser;
